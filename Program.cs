@@ -28,14 +28,11 @@ namespace ContextHubDev
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
 
-            // Оновлена логіка закриття вікна на "Х"
             this.FormClosing += (s, e) => {
                 if (e.CloseReason == CloseReason.UserClosing) {
-                    // Якщо активних плиток немає — закриваємо програму повністю
                     if (activeFences.Count == 0) {
                         Application.Exit();
                     } 
-                    // Якщо плитки є — просто ховаємо панель, залишаючи їх на екрані
                     else {
                         e.Cancel = true;
                         this.Hide();
@@ -43,7 +40,6 @@ namespace ContextHubDev
                 }
             };
 
-            // 1. Елементи UI для створення нових плиток
             Label nameLabel = new Label() { Text = "Назва нової плитки:", Location = new Point(20, 20), Size = new Size(150, 20) };
             this.Controls.Add(nameLabel);
 
@@ -54,7 +50,6 @@ namespace ContextHubDev
             addBtn.Click += AddNewFence;
             this.Controls.Add(addBtn);
 
-            // 2. Список активних плиток
             Label listLabel = new Label() { Text = "Активні плитки (Виберіть для зміни розміру):", Location = new Point(20, 90), Size = new Size(300, 20) };
             this.Controls.Add(listLabel);
 
@@ -64,7 +59,6 @@ namespace ContextHubDev
 
             TrackBarSetup();
 
-            // 3. Кнопка приховування всього з робочого столу
             Button hideFencesBtn = new Button() {
                 Text = "❌ СХОВАТИ ВСІ ПЛИТКИ",
                 Location = new Point(20, 375),
