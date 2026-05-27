@@ -24,9 +24,8 @@ namespace ContextHubDev
             this.Size = new Size(Data.W, Data.H);
             this.BackColor = Color.FromArgb(45, 52, 54);
             this.Opacity = 0.85;
-            this.ShowInTaskbar = false; // Повертаємо справжній стиль утиліти
+            this.ShowInTaskbar = false;
 
-            // Ініціалізація списку файлів усередині плитки
             filesList = new ListBox()
             {
                 Location = new Point(10, HeaderHeight + 10),
@@ -36,8 +35,7 @@ namespace ContextHubDev
                 BorderStyle = BorderStyle.None,
                 Font = new Font("Segoe UI", 10, FontStyle.Regular)
             };
-            
-            // Запуск файлу за подвійним кліком
+
             filesList.DoubleClick += (s, e) => {
                 if (filesList.SelectedIndex >= 0) {
                     try {
@@ -52,7 +50,6 @@ namespace ContextHubDev
 
             this.Controls.Add(filesList);
 
-            // Перетягування мишкою за шапку
             this.MouseDown += (s, e) => {
                 if (e.Button == MouseButtons.Left && e.Y <= HeaderHeight) {
                     SystemStuff.ReleaseCapture();
